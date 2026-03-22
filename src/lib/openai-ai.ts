@@ -9,17 +9,23 @@ export interface TaskSummary {
 }
 
 class OpenAIClient {
-  private client: OpenAI;
+  private client: OpenAI | null = null;
 
-  constructor() {
-    this.client = new OpenAI({
-      apiKey: process.env.OPENAI_API_KEY,
-    });
+  private getClient(): OpenAI {
+    if (!this.client) {
+      if (!process.env.OPENAI_API_KEY) {
+        throw new Error('OpenAI API key is not configured');
+      }
+      this.client = new OpenAI({
+        apiKey: process.env.OPENAI_API_KEY,
+      });
+    }
+    return this.client;
   }
 
   public async generateResponse(prompt: string): Promise<string> {
     try {
-      const response = await this.client.chat.completions.create({
+      const response = await this.getClient().chat.completions.create({
         model: "gpt-3.5-turbo",
         messages: [
           {
@@ -54,7 +60,7 @@ class OpenAIClient {
         return false;
       }
 
-      const response = await this.client.chat.completions.create({
+      const response = await this.getClient().chat.completions.create({
         model: "gpt-3.5-turbo",
         messages: [{ role: "user", content: "test" }],
         max_tokens: 5,

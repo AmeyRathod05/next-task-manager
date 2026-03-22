@@ -8,7 +8,7 @@ import { Role } from "@/generated/prisma/index";
 const updateUserSchema = z.object({
   name: z.string().min(1, "Name is required").max(100).optional(),
   email: z.string().email("Invalid email").optional(),
-  role: z.nativeEnum(Role).optional(),
+  role: z.enum(['ADMIN', 'CO_ADMIN', 'USER']).optional(),
 });
 
 export async function PUT(
@@ -56,7 +56,7 @@ export async function PUT(
 
     const user = await prisma.user.update({
       where: { id },
-      data: validatedData,
+      data: validatedData as any,
       select: {
         id: true,
         name: true,

@@ -51,7 +51,7 @@ export async function GET(
             email: true
           }
         }
-      }
+      } as any
     });
 
     if (!task) {
@@ -143,7 +143,7 @@ export async function PUT(
             email: true
           }
         }
-      }
+      } as any
     });
 
     return NextResponse.json(task);

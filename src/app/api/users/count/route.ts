@@ -1,6 +1,7 @@
 import { getServerSession } from "next-auth/next";
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
+import { Role } from "@/generated/prisma/index";
 
 // GET /api/users/count - Get total user count
 export async function GET(req: NextRequest) {
@@ -20,7 +21,7 @@ export async function GET(req: NextRequest) {
     }
 
     // Only admins and co-admins can get user count
-    if (user.role !== "ADMIN" && user.role !== "CO_ADMIN") {
+    if ((user.role as string) !== "ADMIN" && (user.role as string) !== "CO_ADMIN") {
       return NextResponse.json({ error: "Access denied" }, { status: 403 });
     }
 

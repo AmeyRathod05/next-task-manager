@@ -20,7 +20,7 @@ export async function GET(req: NextRequest) {
     }
 
     // Only admins and co-admins can get all users
-    if (user.role !== "ADMIN" && user.role !== "CO_ADMIN") {
+    if ((user.role as string) !== "ADMIN" && (user.role as string) !== "CO_ADMIN") {
       return NextResponse.json({ error: "Access denied" }, { status: 403 });
     }
 

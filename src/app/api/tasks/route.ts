@@ -92,7 +92,7 @@ export async function GET(req: NextRequest) {
               email: true
             }
           }
-        },
+        } as any,
         orderBy: [
           { priority: "desc" },
           { dueDate: "asc" },
@@ -169,7 +169,7 @@ export async function POST(req: NextRequest) {
             email: true
           }
         }
-      }
+      } as any
     });
 
     return NextResponse.json(task, { status: 201 });

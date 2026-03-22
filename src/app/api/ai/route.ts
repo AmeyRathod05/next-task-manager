@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { summarizeTask, improveTaskDescription } from '@/lib/ollama-ai';
+import { summarizeTask, improveTaskDescription, getAIServiceStatus } from '@/lib/ai-service';
 
 export async function POST(request: NextRequest) {
   try {
@@ -11,19 +11,22 @@ export async function POST(request: NextRequest) {
     }
 
     let result;
-    let usedOllama = true;
+    let aiServiceUsed = 'unknown';
 
     if (action === 'summarize') {
-      console.log('AI API - Calling Ollama summarizeTask...');
+      console.log('AI API - Calling unified summarizeTask...');
       result = await summarizeTask(title, description);
-      console.log('AI API - Ollama Summarize result:', result);
+      console.log('AI API - Summarize result:', result);
     } else if (action === 'improve') {
-      console.log('AI API - Calling Ollama improveTaskDescription...');
+      console.log('AI API - Calling unified improveTaskDescription...');
       result = await improveTaskDescription(title, description);
-      console.log('AI API - Ollama Improve result:', result);
+      console.log('AI API - Improve result:', result);
     } else {
       return NextResponse.json({ error: 'Invalid action' }, { status: 400 });
     }
+
+    const serviceStatus = getAIServiceStatus();
+    aiServiceUsed = serviceStatus.primaryService;
 
     let response: any;
     
@@ -33,14 +36,16 @@ export async function POST(request: NextRequest) {
         keyPoints: (result as any).keyPoints,
         estimatedTime: (result as any).estimatedTime,
         priority: (result as any).priority,
-        usedOllama,
-        message: usedOllama ? 'Using Ollama AI (TinyLlama)' : 'Using fallback AI service'
+        aiService: aiServiceUsed,
+        serviceStatus,
+        message: `Using ${aiServiceUsed} AI service${aiServiceUsed === 'OpenAI' ? ' (GPT-3.5-turbo)' : ' (TinyLlama)'}`
       };
     } else {
       response = {
         improvedDescription: result,
-        usedOllama,
-        message: usedOllama ? 'Using Ollama AI (TinyLlama)' : 'Using fallback AI service'
+        aiService: aiServiceUsed,
+        serviceStatus,
+        message: `Using ${aiServiceUsed} AI service${aiServiceUsed === 'OpenAI' ? ' (GPT-3.5-turbo)' : ' (TinyLlama)'}`
       };
     }
     
@@ -49,7 +54,11 @@ export async function POST(request: NextRequest) {
   } catch (error) {
     console.error('AI API error:', error);
     return NextResponse.json(
-      { error: 'Failed to process AI request', details: error instanceof Error ? error.message : 'Unknown error' },
+      { 
+        error: 'Failed to process AI request', 
+        details: error instanceof Error ? error.message : 'Unknown error',
+        serviceStatus: getAIServiceStatus()
+      },
       { status: 500 }
     );
   }

@@ -7,13 +7,12 @@ A modern, full-stack task management application built with Next.js, TypeScript,
 - **Task Management**: Create, read, update, and delete tasks
 - **User Management**: Admin and user role-based access control
 - **AI-Powered Summaries**: Intelligent task analysis and summaries
-- **Modern UI**: Beautiful, responsive design with Tailwind CSS
 - **Authentication**: Secure login and registration with NextAuth
 - **Database**: PostgreSQL with Prisma ORM
 - **Real-time Updates**: Live task status updates
-- **Mobile Responsive**: Works perfectly on all devices
 
-## 🤖 AI Features
+
+##  AI Features
 
 The application includes smart AI capabilities with dual service support:
 
@@ -25,7 +24,7 @@ The application includes smart AI capabilities with dual service support:
 - **Primary**: Ollama with TinyLlama for free local testing
 - **Fallback**: Rule-based system for reliability
 
-## 🚀 Quick Start
+##  Quick Start
 
 ### Prerequisites
 

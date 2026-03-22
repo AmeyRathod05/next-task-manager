@@ -335,7 +335,6 @@ export const UserManagement: React.FC = () => {
                         <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold transition-all duration-200 hover:scale-105 ${
                           user.role === 'ADMIN' ? 'bg-red-100 text-red-800 ring-2 ring-red-100' :
                           user.role === 'CO_ADMIN' ? 'bg-yellow-100 text-yellow-800 ring-2 ring-yellow-100' :
-                          user.role === 'unassigned' ? 'bg-gray-100 text-gray-800 ring-2 ring-gray-100' :
                           'bg-green-100 text-green-800 ring-2 ring-green-100'
                         }`}>
                           {user.role.replace('_', ' ')}

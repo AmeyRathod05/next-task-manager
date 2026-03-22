@@ -86,7 +86,7 @@ export default function DashboardLayout({ children }: DashboardLayoutProps) {
               </span>
               <Button
                 onClick={() => signOut()}
-                variant="danger"
+                variant="destructive"
                 size="sm"
               >
                 Sign Out

@@ -13,9 +13,10 @@ const updateUserSchema = z.object({
 
 export async function PUT(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const session = await getServerSession();
     if (!session?.user?.email) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
@@ -35,7 +36,7 @@ export async function PUT(
     const validatedData = updateUserSchema.parse(body);
 
     // Prevent admin from changing their own role
-    if (params.id === currentUser.id && validatedData.role) {
+    if (id === currentUser.id && validatedData.role) {
       return NextResponse.json({ error: "Cannot change your own role" }, { status: 400 });
     }
 
@@ -44,7 +45,7 @@ export async function PUT(
       const existingUser = await prisma.user.findFirst({
         where: {
           email: validatedData.email,
-          id: { not: params.id }
+          id: { not: id }
         }
       });
 
@@ -54,7 +55,7 @@ export async function PUT(
     }
 
     const user = await prisma.user.update({
-      where: { id: params.id },
+      where: { id },
       data: validatedData,
       select: {
         id: true,
@@ -89,9 +90,10 @@ export async function PUT(
 // DELETE /api/admin/users/[id] - Admin only: Delete user
 export async function DELETE(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const session = await getServerSession();
     if (!session?.user?.email) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
@@ -108,13 +110,13 @@ export async function DELETE(
     }
 
     // Prevent admin from deleting themselves
-    if (params.id === currentUser.id) {
+    if (id === currentUser.id) {
       return NextResponse.json({ error: "Cannot delete your own account" }, { status: 400 });
     }
 
     // Delete user (this will also delete their tasks due to cascade)
     await prisma.user.delete({
-      where: { id: params.id }
+      where: { id }
     });
 
     return NextResponse.json({ message: "User deleted successfully" });

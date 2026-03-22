@@ -113,10 +113,10 @@ export const TaskForm: React.FC<TaskFormProps> = ({
     try {
       await onSubmit({
         title: formData.title.trim(),
-        description: formData.description.trim() || undefined,
+        description: formData.description?.trim() || '',
         status: formData.status,
         priority: formData.priority,
-        dueDate: formData.dueDate || undefined,
+        dueDate: formData.dueDate || '',
         assignedToId: (formData.assignedToId === 'unassigned' || formData.assignedToId === 'unknown') ? undefined : formData.assignedToId
       });
       
@@ -290,7 +290,7 @@ export const TaskForm: React.FC<TaskFormProps> = ({
                   <span className="w-2 h-2 bg-purple-500 rounded-full"></span>
                   Assigned To
                 </SelectLabel>
-                <Select value={formData.assignedToId} onValueChange={(value) => handleInputChange('assignedToId', value)}>
+                <Select value={formData.assignedToId || ''} onValueChange={(value) => handleInputChange('assignedToId', value)}>
                   <SelectTrigger id="assigned-select" className="w-full h-12 rounded-xl border-2 border-gray-200 focus:border-blue-500 focus:ring-4 focus:ring-blue-100 transition-all duration-300 group-hover:shadow-lg group-hover:border-gray-300">
                     <SelectValue placeholder="Select team member" />
                   </SelectTrigger>

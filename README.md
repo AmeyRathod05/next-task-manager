@@ -151,21 +151,7 @@ ollama serve
 
 ## 🚀 Deployment
 
-### Vercel (Recommended)
 
-1. **Prepare for deployment**
-```bash
-# Install dependencies
-npm install
-
-# Build the application
-npm run build
-```
-
-2. **Deploy to Vercel**
-- Connect your GitHub repository to Vercel
-- Add environment variables in Vercel dashboard
-- Deploy automatically on push to main branch
 
 3. **Required Environment Variables**
 ```bash
@@ -174,8 +160,6 @@ NEXTAUTH_SECRET=your-random-secret-key
 NEXTAUTH_URL=https://your-app-name.vercel.app
 OPENAI_API_KEY=sk-your-openai-api-key
 ```
-
-For detailed deployment instructions, see [DEPLOYMENT.md](./DEPLOYMENT.md).
 
 ## 📱 Features Overview
 
@@ -226,7 +210,7 @@ npx prisma db push    # Push schema to database
 npx prisma studio     # Open Prisma Studio
 ```
 
-## 🧪 Testing
+## Testing
 
 The application includes comprehensive testing:
 
@@ -268,24 +252,6 @@ OPENAI_API_KEY="your-openai-api-key-here"
 OLLAMA_BASE_URL="http://localhost:11434"
 ```
 
-## 🤝 Contributing
 
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Add tests if applicable
-5. Submit a pull request
-
-## 📄 License
-
-This project is licensed under the MIT License.
-
-## 🆘 Support
-
-- **Documentation**: See [DEPLOYMENT.md](./DEPLOYMENT.md) for deployment help
-- **Issues**: Open an issue on GitHub for bugs or feature requests
-- **Discussions**: Use GitHub Discussions for questions
-
----
 
 **Built with ❤️ using Next.js, TypeScript, and modern web technologies**

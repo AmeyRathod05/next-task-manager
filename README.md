@@ -118,15 +118,6 @@ The application uses NextAuth.js for secure authentication:
 - **Role-Based Access**: Admin and user permissions
 - **Protected Routes**: Route-level access control
 
-## 🎨 UI Components
-
-Built with modern, accessible components:
-
-- **Radix UI**: Headless component primitives
-- **Tailwind CSS**: Utility-first styling
-- **Lucide React**: Beautiful icons
-- **Responsive Design**: Mobile-first approach
-- **Dark Mode**: Ready for theme switching
 
 ## 🤖 AI Integration
 
@@ -160,37 +151,7 @@ NEXTAUTH_URL=https://your-app-name.vercel.app
 OPENAI_API_KEY=sk-your-openai-api-key
 ```
 
-## 📱 Features Overview
 
-### Task Management
-- ✅ Create tasks with title and description
-- ✅ Set priority levels (Low, Medium, High)
-- ✅ Track task status (Todo, In Progress, Done)
-- ✅ Assign tasks to users
-- ✅ Set due dates
-- ✅ Edit and delete tasks
-
-### User Management
-- ✅ User registration and login
-- ✅ Admin and user roles
-- ✅ User profile management
-- ✅ Task assignment capabilities
-
-### AI Features
-- ✅ Automatic task summarization
-- ✅ Key action point extraction
-- ✅ Time estimation
-- ✅ Priority recommendations
-- ✅ Description improvement suggestions
-
-### UI/UX
-- ✅ Modern, clean interface
-- ✅ Smooth animations and transitions
-- ✅ Responsive design for all devices
-- ✅ Interactive components
-- ✅ Loading states and error handling
-
-## 🛠️ Development
 
 ### Available Scripts
 
@@ -211,14 +172,12 @@ npx prisma studio     # Open Prisma Studio
 
 ## Testing
 
-The application includes comprehensive testing:
-
 - **Unit Tests**: Component and utility testing
 - **Integration Tests**: API route testing
 - **E2E Tests**: Full user journey testing
 - **AI Service Testing**: Mock AI responses for testing
 
-## 📊 Monitoring & Analytics
+##  Monitoring & Analytics
 
 ### Production Monitoring
 - **Vercel Analytics**: Performance and usage metrics
@@ -230,7 +189,7 @@ The application includes comprehensive testing:
 - **TypeScript**: Type safety and IDE support
 - **ESLint**: Code quality and consistency
 
-## 🔧 Configuration
+##  Configuration
 
 ### Environment Variables
 
@@ -250,7 +209,3 @@ OPENAI_API_KEY="your-openai-api-key-here"
 # Ollama URL (Development)
 OLLAMA_BASE_URL="http://localhost:11434"
 ```
-
-
-
-**Built with ❤️ using Next.js, TypeScript, and modern web technologies**

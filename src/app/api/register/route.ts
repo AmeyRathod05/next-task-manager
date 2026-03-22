@@ -1,4 +1,5 @@
 import { prisma } from "@/lib/prisma";
+import bcrypt from "bcryptjs";
 import { NextRequest, NextResponse } from "next/server";
 
 // Force dynamic rendering
@@ -28,11 +29,12 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // For mock database, store password as plain text
+    const hashedPassword = await bcrypt.hash(password, 10);
+
     const user = await prisma.user.create({
       data: {
         email,
-        password, // Plain text for mock
+        password: hashedPassword,
         name,
       },
     });

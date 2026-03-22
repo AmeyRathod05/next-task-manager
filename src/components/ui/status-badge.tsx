@@ -5,18 +5,49 @@ interface StatusBadgeProps {
 }
 
 export const StatusBadge: React.FC<StatusBadgeProps> = ({ status }) => {
-  const getStatusColor = (status: string) => {
+  const getStatusConfig = (status: string) => {
     switch (status) {
-      case 'TODO': return 'bg-gray-100 text-gray-800';
-      case 'IN_PROGRESS': return 'bg-blue-100 text-blue-800';
-      case 'DONE': return 'bg-green-100 text-green-800';
-      default: return 'bg-gray-100 text-gray-800';
+      case 'TODO': 
+        return {
+          bg: 'bg-gradient-to-r from-gray-100 to-gray-200',
+          text: 'text-gray-800',
+          ring: 'ring-2 ring-gray-200',
+          icon: '⏸️',
+          label: 'To Do'
+        };
+      case 'IN_PROGRESS': 
+        return {
+          bg: 'bg-gradient-to-r from-blue-100 to-blue-200',
+          text: 'text-blue-800',
+          ring: 'ring-2 ring-blue-200',
+          icon: '🔄',
+          label: 'In Progress'
+        };
+      case 'DONE': 
+        return {
+          bg: 'bg-gradient-to-r from-green-100 to-green-200',
+          text: 'text-green-800',
+          ring: 'ring-2 ring-green-200',
+          icon: '✅',
+          label: 'Completed'
+        };
+      default: 
+        return {
+          bg: 'bg-gradient-to-r from-gray-100 to-gray-200',
+          text: 'text-gray-800',
+          ring: 'ring-2 ring-gray-200',
+          icon: '📋',
+          label: status.replace('_', ' ')
+        };
     }
   };
 
+  const config = getStatusConfig(status);
+
   return (
-    <span className={`px-2 py-1 rounded text-xs font-medium ${getStatusColor(status)}`}>
-      {status.replace('_', ' ')}
-    </span>
+    <div className={`inline-flex items-center px-3 py-1.5 rounded-full text-xs font-bold ${config.bg} ${config.text} ${config.ring} transition-all duration-200 transform hover:scale-105 shadow-sm hover:shadow-md`}>
+      <span className="mr-1.5 text-sm">{config.icon}</span>
+      {config.label}
+    </div>
   );
 };

@@ -37,18 +37,37 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50">
-      <div className="max-w-md w-full space-y-8">
-        <div>
-          <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
-            Create your account
-          </h2>
-        </div>
-        <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
-          <div className="rounded-md shadow-sm -space-y-px">
-            <div>
-              <label htmlFor="name" className="sr-only">
-                Name
+    <div className="min-h-screen bg-gradient-to-br from-green-600 via-teal-600 to-blue-600 flex items-center justify-center px-4 py-8">
+      {/* Background Animation */}
+      <div className="absolute inset-0 bg-black/20 backdrop-blur-sm"></div>
+      
+      {/* Floating Elements */}
+      <div className="absolute top-20 left-20 w-72 h-72 bg-green-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse"></div>
+      <div className="absolute top-40 right-20 w-72 h-72 bg-teal-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse animation-delay-2000"></div>
+      <div className="absolute bottom-20 left-1/2 w-72 h-72 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-pulse animation-delay-4000"></div>
+
+      <div className="relative z-10 w-full max-w-md">
+        {/* Register Card */}
+        <div className="bg-white/95 backdrop-blur-lg rounded-3xl shadow-2xl border border-white/20 p-6 sm:p-8 transform transition-all duration-500 hover:scale-[1.02]">
+          {/* Header */}
+          <div className="text-center mb-6 sm:mb-8">
+            {/* <div className="mx-auto w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-green-600 to-teal-600 rounded-2xl flex items-center justify-center mb-3 sm:mb-4 animate-pulse">
+              <svg className="w-8 h-8 sm:w-10 sm:h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18 9v3m0 0v3m0 0h-3m-3 9h12a9 9 0 0018 0 9 9 0 0018 0H3m9 9a9 9 0 10-18 0 9 9 0 0018 0z" />
+              </svg>
+            </div> */}
+            <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2 animate-fade-in">
+              Create Account
+            </h1>
+          
+          </div>
+
+          {/* Form */}
+          <form className="space-y-4 sm:space-y-6 animate-fade-in animation-delay-400" onSubmit={handleSubmit}>
+            {/* Name Field */}
+            <div className="space-y-2">
+              <label htmlFor="name" className="text-xs sm:text-sm font-semibold text-gray-700 block">
+                Full Name
               </label>
               <input
                 id="name"
@@ -56,15 +75,17 @@ export default function RegisterPage() {
                 type="text"
                 autoComplete="name"
                 required
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                placeholder="Full name"
+                className="w-full px-3 py-2 sm:px-4 sm:py-3 bg-white border border-gray-300 rounded-xl text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 focus:ring-offset-2 transition-all duration-200 hover:border-gray-400 hover:shadow-lg text-sm"
+                placeholder="Enter your full name"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
               />
             </div>
-            <div>
-              <label htmlFor="email" className="sr-only">
-                Email address
+
+            {/* Email Field */}
+            <div className="space-y-2">
+              <label htmlFor="email" className="text-xs sm:text-sm font-semibold text-gray-700 block">
+                Email Address
               </label>
               <input
                 id="email"
@@ -72,14 +93,16 @@ export default function RegisterPage() {
                 type="email"
                 autoComplete="email"
                 required
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                placeholder="Email address"
+                className="w-full px-3 py-2 sm:px-4 sm:py-3 bg-white border border-gray-300 rounded-xl text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 focus:ring-offset-2 transition-all duration-200 hover:border-gray-400 hover:shadow-lg text-sm"
+                placeholder="Enter your email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
             </div>
-            <div>
-              <label htmlFor="password" className="sr-only">
+
+            {/* Password Field */}
+            <div className="space-y-2">
+              <label htmlFor="password" className="text-xs sm:text-sm font-semibold text-gray-700 block">
                 Password
               </label>
               <input
@@ -88,38 +111,120 @@ export default function RegisterPage() {
                 type="password"
                 autoComplete="new-password"
                 required
-                className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm"
-                placeholder="Password"
+                className="w-full px-3 py-2 sm:px-4 sm:py-3 bg-white border border-gray-300 rounded-xl text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500 focus:ring-offset-2 transition-all duration-200 hover:border-gray-400 hover:shadow-lg text-sm"
+                placeholder="Create a strong password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
             </div>
-          </div>
 
-          {error && (
-            <div className="text-red-500 text-sm text-center">{error}</div>
-          )}
+            {/* Error Message */}
+            {error && (
+              <div className="bg-red-50 border border-red-200 rounded-xl p-3 sm:p-4 animate-slide-up">
+                <div className="flex items-center gap-2 sm:gap-3">
+                  <div className="flex-shrink-0 w-8 h-8 sm:w-10 sm:h-10 bg-red-100 rounded-full flex items-center justify-center">
+                    <svg className="w-4 h-4 sm:w-5 sm:h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 className="text-red-800 font-semibold text-sm sm:text-base">Registration Error</h3>
+                    <p className="text-red-600 text-xs sm:text-sm">{error}</p>
+                  </div>
+                </div>
+              </div>
+            )}
 
-          <div>
-            <button
-              type="submit"
-              disabled={loading}
-              className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 disabled:opacity-50"
-            >
-              {loading ? 'Creating account...' : 'Sign up'}
-            </button>
-          </div>
+            {/* Submit Button */}
+            <div>
+              <button
+                type="submit"
+                disabled={loading}
+                className="w-full flex justify-center py-2.5 px-4 sm:py-3 sm:px-4 bg-gradient-to-r from-green-600 to-teal-600 hover:from-green-700 hover:to-teal-700 text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition-all duration-200 transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none text-sm sm:text-base"
+              >
+                {loading ? (
+                  <div className="flex items-center gap-2">
+                    <div className="w-4 h-4 sm:w-5 sm:h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                    Creating account...
+                  </div>
+                ) : (
+                  <div className="flex items-center gap-2">
+                    <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18 9v3m0 0v3m0 0h-3m-3 9h12a9 9 0 0018 0 9 9 0 0018 0H3m9 9a9 9 0 10-18 0 9 9 0 0018 0z" />
+                    </svg>
+                    Sign Up
+                  </div>
+                )}
+              </button>
+            </div>
 
-          <div className="text-center">
-            <span className="text-sm text-gray-600">
-              Already have an account?{' '}
-              <a href="/login" className="font-medium text-indigo-600 hover:text-indigo-500">
-                Sign in
-              </a>
-            </span>
-          </div>
-        </form>
+            {/* Sign In Link */}
+            <div className="text-center animate-fade-in animation-delay-600">
+              <span className="text-xs sm:text-sm text-gray-600">
+                Already have an account?{' '}
+                <a 
+                  href="/login" 
+                  className="font-semibold text-green-600 hover:text-green-500 transition-colors duration-200 hover:underline"
+                >
+                  Sign in
+                </a>
+              </span>
+            </div>
+          </form>
+        </div>
       </div>
+
+      <style jsx>{`
+        @keyframes fade-in {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        @keyframes slide-up {
+          from {
+            opacity: 0;
+            transform: translateY(30px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        .animate-fade-in {
+          animation: fade-in 0.6s ease-out;
+        }
+
+        .animate-slide-up {
+          animation: slide-up 0.6s ease-out;
+        }
+
+        .animation-delay-200 {
+          animation-delay: 200ms;
+        }
+
+        .animation-delay-400 {
+          animation-delay: 400ms;
+        }
+
+        .animation-delay-600 {
+          animation-delay: 600ms;
+        }
+
+        .animation-delay-2000 {
+          animation-delay: 2s;
+        }
+
+        .animation-delay-4000 {
+          animation-delay: 4s;
+        }
+      `}</style>
     </div>
   );
 }

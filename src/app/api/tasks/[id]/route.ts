@@ -3,6 +3,9 @@ import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { z } from "zod";
 
+// Force dynamic rendering
+export const dynamic = 'force-dynamic';
+
 const updateTaskSchema = z.object({
   title: z.string().min(1).max(100).optional(),
   description: z.string().max(1000).optional(),

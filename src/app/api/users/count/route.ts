@@ -3,6 +3,9 @@ import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { Role } from "@/generated/prisma/index";
 
+// Force dynamic rendering
+export const dynamic = 'force-dynamic';
+
 // GET /api/users/count - Get total user count
 export async function GET(req: NextRequest) {
   try {

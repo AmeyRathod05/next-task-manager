@@ -4,6 +4,9 @@ import { prisma } from "@/lib/prisma";
 import { z } from "zod";
 import { Role } from "@/generated/prisma/index";
 
+// Force dynamic rendering
+export const dynamic = 'force-dynamic';
+
 // PUT /api/admin/users/[id] - Admin only: Update user details
 const updateUserSchema = z.object({
   name: z.string().min(1, "Name is required").max(100).optional(),
